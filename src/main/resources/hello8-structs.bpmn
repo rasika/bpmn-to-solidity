@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- origin at X=0.0 Y=0.0 -->
+<bpmn2:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bpmn2="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:ext="http://org.eclipse.bpmn2/ext" xmlns:xs="http://www.w3.org/2001/XMLSchema" id="Definitions_1" exporter="org.eclipse.bpmn2.modeler.core" exporterVersion="1.4.3.Final-v20180418-1358-B1">
+  <bpmn2:itemDefinition id="ItemDefinition_1090" isCollection="false" structureRef="solidity:string"/>
+  <bpmn2:itemDefinition id="ItemDefinition_54" isCollection="false" structureRef="xs:boolean"/>
+  <bpmn2:itemDefinition id="ItemDefinition_106" isCollection="false" structureRef="solidity:uint"/>
+  <bpmn2:itemDefinition id="ItemDefinition_1364" isCollection="false"/>
+  <bpmn2:itemDefinition id="ItemDefinition_4449" isCollection="false" structureRef="xs:int"/>
+  <bpmn2:itemDefinition id="ItemDefinition_115" isCollection="false" structureRef="solidity:bool"/>
+  <bpmn2:itemDefinition id="ItemDefinition_242" isCollection="false" structureRef="solidity:enum"/>
+  <bpmn2:signal id="Signal_1" name="Signal 1" structureRef="ItemDefinition_54"/>
+  <bpmn2:escalation id="Escalation_1" escalationCode="Error!" name="Escalation 1" structureRef="ItemDefinition_1090"/>
+  <bpmn2:message id="Message_1" itemRef="ItemDefinition_1090" name="USDRate">
+    <bpmn2:extensionElements>
+      <ext:style/>
+    </bpmn2:extensionElements>
+  </bpmn2:message>
+  <bpmn2:message id="Message_2" itemRef="ItemDefinition_1364" name="Message 2">
+    <bpmn2:extensionElements>
+      <ext:style/>
+    </bpmn2:extensionElements>
+  </bpmn2:message>
+  <bpmn2:message id="Message_3" itemRef="ItemDefinition_1090" name="Message 3">
+    <bpmn2:extensionElements>
+      <ext:style/>
+    </bpmn2:extensionElements>
+  </bpmn2:message>
+  <bpmn2:message id="Message_4" itemRef="ItemDefinition_1090" name="Message 4">
+    <bpmn2:extensionElements>
+      <ext:style/>
+    </bpmn2:extensionElements>
+  </bpmn2:message>
+  <bpmn2:message id="Message_5" itemRef="ItemDefinition_1090" name="SalaryCalculated">
+    <bpmn2:extensionElements>
+      <ext:style/>
+    </bpmn2:extensionElements>
+  </bpmn2:message>
+  <bpmn2:dataStore id="DataStore_2" itemSubjectRef="ItemDefinition_1090" name="Data Store 1"/>
+  <bpmn2:dataStore id="DataStore_4" itemSubjectRef="ItemDefinition_106" name="Data Store 3"/>
+  <bpmn2:dataStore id="DataStore_3" itemSubjectRef="ItemDefinition_1090" name="usdRate"/>
+  <bpmn2:dataStore id="DataStore_5" name="Data Store 1"/>
+  <bpmn2:dataStore id="DataStore_7" name="Voter2"/>
+  <bpmn2:interface id="Interface_1" implementationRef="xml(https://www.fueleconomy.gov/ws/rest/fuelprices)" name="Interface 1">
+    <bpmn2:operation id="Operation_1" implementationRef=".fuelPrices.diesel" name="Operation 1">
+      <bpmn2:inMessageRef>Message_1</bpmn2:inMessageRef>
+    </bpmn2:operation>
+  </bpmn2:interface>
+  <bpmn2:collaboration id="Collaboration_1" name="Collaboration 1">
+    <bpmn2:participant id="Participant_3" name="Default Pool" processRef="Process_2">
+      <bpmn2:extensionElements>
+        <ext:style/>
+      </bpmn2:extensionElements>
+    </bpmn2:participant>
+    <bpmn2:participant id="Participant_4" name="Hello World" processRef="Process_3"/>
+  </bpmn2:collaboration>
+  <bpmn2:process id="Process_2" name="Default Pool Process" definitionalCollaborationRef="Collaboration_1" isExecutable="false">
+    <bpmn2:ioSpecification id="InputOutputSpecification_2">
+      <bpmn2:inputSet id="InputSet_2" name="Input Set 2"/>
+      <bpmn2:outputSet id="OutputSet_2" name="Output Set 2"/>
+    </bpmn2:ioSpecification>
+  </bpmn2:process>
+  <bpmn2:process id="Process_3" name="Process 3" definitionalCollaborationRef="Collaboration_1" isExecutable="false">
+    <bpmn2:ioSpecification id="InputOutputSpecification_3">
+      <bpmn2:dataInput id="DataInput_8" itemSubjectRef="ItemDefinition_115" name="voted"/>
+      <bpmn2:dataInput id="DataInput_7" itemSubjectRef="ItemDefinition_106" name="weight"/>
+      <bpmn2:dataInput id="DataInput_10" itemSubjectRef="ItemDefinition_106" name="weight"/>
+      <bpmn2:dataInput id="DataInput_11" itemSubjectRef="ItemDefinition_115" name="voted"/>
+      <bpmn2:inputSet id="InputSet_4" name="Input Set 4">
+        <bpmn2:dataInputRefs>DataInput_8</bpmn2:dataInputRefs>
+        <bpmn2:dataInputRefs>DataInput_7</bpmn2:dataInputRefs>
+        <bpmn2:dataInputRefs>DataInput_10</bpmn2:dataInputRefs>
+        <bpmn2:dataInputRefs>DataInput_11</bpmn2:dataInputRefs>
+      </bpmn2:inputSet>
+      <bpmn2:outputSet id="OutputSet_4" name="Output Set 4"/>
+    </bpmn2:ioSpecification>
+    <bpmn2:dataStoreReference id="DataStoreReference_2" name="empAge" itemSubjectRef="ItemDefinition_1090" dataStoreRef="DataStore_4">
+      <bpmn2:dataState id="DataState_2"/>
+    </bpmn2:dataStoreReference>
+    <bpmn2:dataStoreReference id="DataStoreReference_4" name="Voter2" dataStoreRef="DataStore_7">
+      <bpmn2:dataState id="DataState_5"/>
+    </bpmn2:dataStoreReference>
+    <bpmn2:dataObject id="DataObject_2" name="Voter">
+      <bpmn2:dataState id="DataState_4"/>
+    </bpmn2:dataObject>
+    <bpmn2:dataObject id="DataObject_3" name="empName" itemSubjectRef="ItemDefinition_1090">
+      <bpmn2:dataState id="DataState_3"/>
+    </bpmn2:dataObject>
+    <bpmn2:dataObject id="DataObject_7" name="empAdress" itemSubjectRef="ItemDefinition_242">
+      <bpmn2:dataState id="DataState_7" name="A, B, C"/>
+    </bpmn2:dataObject>
+    <bpmn2:association id="Association_7" sourceRef="DataInput_10" targetRef="DataStoreReference_4"/>
+    <bpmn2:association id="Association_8" sourceRef="DataInput_11" targetRef="DataStoreReference_4"/>
+    <bpmn2:association id="Association_9" sourceRef="DataInput_8" targetRef="DataObject_2"/>
+    <bpmn2:association id="Association_10" sourceRef="DataInput_7" targetRef="DataObject_2"/>
+  </bpmn2:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_1">
+      <bpmndi:BPMNShape id="BPMNShape_Participant_3" bpmnElement="Participant_4" isHorizontal="true">
+        <dc:Bounds height="171.0" width="441.0" x="160.0" y="360.0"/>
+        <bpmndi:BPMNLabel id="BPMNLabel_15" labelStyle="BPMNLabelStyle_1">
+          <dc:Bounds height="47.0" width="11.0" x="166.0" y="422.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_DataStoreReference_2" bpmnElement="DataStoreReference_2">
+        <dc:Bounds height="50.0" width="50.0" x="211.0" y="450.0"/>
+        <bpmndi:BPMNLabel id="BPMNLabel_7" labelStyle="BPMNLabelStyle_1">
+          <dc:Bounds height="11.0" width="34.0" x="219.0" y="500.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_DataStoreReference_3">
+        <dc:Bounds height="50.0" width="50.0" x="400.0" y="150.0"/>
+        <bpmndi:BPMNLabel id="BPMNLabel_14" labelStyle="BPMNLabelStyle_1">
+          <dc:Bounds height="11.0" width="51.0" x="400.0" y="200.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_DataObject_1" bpmnElement="DataObject_2">
+        <dc:Bounds height="50.0" width="36.0" x="356.0" y="370.0"/>
+        <bpmndi:BPMNLabel id="BPMNLabel_18" labelStyle="BPMNLabelStyle_1">
+          <dc:Bounds height="11.0" width="22.0" x="363.0" y="420.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_DataInput_5" bpmnElement="DataInput_7">
+        <dc:Bounds height="50.0" width="36.0" x="321.0" y="451.0"/>
+        <bpmndi:BPMNLabel id="BPMNLabel_19">
+          <dc:Bounds height="11.0" width="27.0" x="325.0" y="501.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_DataInput_6" bpmnElement="DataInput_8">
+        <dc:Bounds height="50.0" width="36.0" x="393.0" y="450.0"/>
+        <bpmndi:BPMNLabel id="BPMNLabel_21">
+          <dc:Bounds height="11.0" width="23.0" x="399.0" y="500.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_DataStoreReference_4" bpmnElement="DataStoreReference_4">
+        <dc:Bounds height="50.0" width="50.0" x="500.0" y="370.0"/>
+        <bpmndi:BPMNLabel id="BPMNLabel_23" labelStyle="BPMNLabelStyle_1">
+          <dc:Bounds height="11.0" width="27.0" x="511.0" y="420.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_DataInput_8" bpmnElement="DataInput_10">
+        <dc:Bounds height="50.0" width="36.0" x="470.0" y="450.0"/>
+        <bpmndi:BPMNLabel id="BPMNLabel_24">
+          <dc:Bounds height="11.0" width="27.0" x="474.0" y="500.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_DataInput_9" bpmnElement="DataInput_11">
+        <dc:Bounds height="50.0" width="36.0" x="550.0" y="450.0"/>
+        <bpmndi:BPMNLabel id="BPMNLabel_25">
+          <dc:Bounds height="11.0" width="23.0" x="556.0" y="500.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_DataObject_2" bpmnElement="DataObject_3">
+        <dc:Bounds height="50.0" width="36.0" x="218.0" y="371.0"/>
+        <bpmndi:BPMNLabel id="BPMNLabel_1" labelStyle="BPMNLabelStyle_1">
+          <dc:Bounds height="11.0" width="42.0" x="215.0" y="421.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_DataObject_4" bpmnElement="DataObject_7">
+        <dc:Bounds height="50.0" width="36.0" x="280.0" y="371.0"/>
+        <bpmndi:BPMNLabel id="BPMNLabel_2" labelStyle="BPMNLabelStyle_1">
+          <dc:Bounds height="22.0" width="46.0" x="275.0" y="421.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="BPMNEdge_Association_7" bpmnElement="Association_7" sourceElement="BPMNShape_DataInput_8" targetElement="BPMNShape_DataStoreReference_4">
+        <di:waypoint xsi:type="dc:Point" x="506.0" y="475.0"/>
+        <di:waypoint xsi:type="dc:Point" x="516.0" y="475.0"/>
+        <di:waypoint xsi:type="dc:Point" x="516.0" y="420.0"/>
+        <bpmndi:BPMNLabel id="BPMNLabel_31"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="BPMNEdge_Association_8" bpmnElement="Association_8" sourceElement="BPMNShape_DataInput_9" targetElement="BPMNShape_DataStoreReference_4">
+        <di:waypoint xsi:type="dc:Point" x="550.0" y="475.0"/>
+        <di:waypoint xsi:type="dc:Point" x="533.0" y="475.0"/>
+        <di:waypoint xsi:type="dc:Point" x="533.0" y="420.0"/>
+        <bpmndi:BPMNLabel id="BPMNLabel_32"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="BPMNEdge_Association_9" bpmnElement="Association_9" sourceElement="BPMNShape_DataInput_6" targetElement="BPMNShape_DataObject_1">
+        <di:waypoint xsi:type="dc:Point" x="393.0" y="475.0"/>
+        <di:waypoint xsi:type="dc:Point" x="380.0" y="475.0"/>
+        <di:waypoint xsi:type="dc:Point" x="380.0" y="420.0"/>
+        <bpmndi:BPMNLabel id="BPMNLabel_33"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="BPMNEdge_Association_10" bpmnElement="Association_10" sourceElement="BPMNShape_DataInput_5" targetElement="BPMNShape_DataObject_1">
+        <di:waypoint xsi:type="dc:Point" x="357.0" y="476.0"/>
+        <di:waypoint xsi:type="dc:Point" x="368.0" y="476.0"/>
+        <di:waypoint xsi:type="dc:Point" x="368.0" y="420.0"/>
+        <bpmndi:BPMNLabel id="BPMNLabel_34"/>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+    <bpmndi:BPMNLabelStyle id="BPMNLabelStyle_1">
+      <dc:Font name="arial" size="9.0"/>
+    </bpmndi:BPMNLabelStyle>
+  </bpmndi:BPMNDiagram>
+</bpmn2:definitions>
