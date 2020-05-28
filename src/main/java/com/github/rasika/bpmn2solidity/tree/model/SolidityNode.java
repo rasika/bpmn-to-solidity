@@ -7,9 +7,7 @@ import com.github.rasika.bpmn2solidity.solidty.SolidityCodeTemplate;
 import com.github.rasika.bpmn2solidity.solidty.SolidityContract;
 import com.github.rasika.bpmn2solidity.tree.model.task.Task;
 
-import java.util.ArrayList;
 import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 

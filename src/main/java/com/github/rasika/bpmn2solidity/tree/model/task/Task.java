@@ -13,7 +13,6 @@ import com.github.rasika.bpmn2solidity.tree.model.DataOutputAssociation;
 import com.github.rasika.bpmn2solidity.tree.model.IOSpecification;
 import com.github.rasika.bpmn2solidity.tree.model.MessageFlow;
 import com.github.rasika.bpmn2solidity.tree.model.Node;
-import com.github.rasika.bpmn2solidity.tree.model.SequenceFlow;
 import com.github.rasika.bpmn2solidity.tree.model.SolidityNode;
 import com.github.rasika.bpmn2solidity.tree.model.toplevel.VariableTypeDefinition;
 
