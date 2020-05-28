@@ -53,20 +53,32 @@ public class Message extends SolidityNode {
                 Task topLevelTask;
                 if ((topLevelTask = getTopLevelTask()) != null) {
                     SolidityFunction function = contract.getFunction(topLevelTask.functionName);
-                    String params = properties.stream()
-                            .map(p -> p.toSolidity().split(" ")[1])
-                            .collect(Collectors.joining(", "));
+                    String params = getParams(properties);
                     function.addInstruction(new SolidityInstruction("emit " + name + "(" + params + ");"));
-                    contract.addEvent(name, properties.stream().map(Property::toSolidity).collect(Collectors.toList()));
+                    contract.addEvent(name, getDefs(properties));
                 } else if (topLevelTaskExplicitlySet) {
                     SolidityConstructor constructor = contract.getConstructor();
-                    String params = properties.stream()
-                            .map(p -> p.toSolidity().split(" ")[1])
-                            .collect(Collectors.joining(", "));
+                    String params = getParams(properties);
                     constructor.addInstruction(new SolidityInstruction("emit " + name + "(" + params + ");"));
-                    contract.addEvent(name, properties.stream().map(Property::toSolidity).collect(Collectors.toList()));
+                    contract.addEvent(name, getDefs(properties));
                 }
             }
         }
+    }
+
+    private String getParams(List<Property> properties) {
+        return properties.stream()
+                .map(p -> {
+                    String val = p.toSolidity().split(" ")[1];
+                    String[] parts = val.split("=");
+                    return (parts.length > 1) ? parts[1] : parts[0];
+                })
+                .collect(Collectors.joining(", "));
+    }
+
+    private List<String> getDefs(List<Property> properties) {
+        return properties.stream()
+                .map(p -> p.toSolidity().split("=")[0])
+                .collect(Collectors.toList());
     }
 }
