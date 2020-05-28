@@ -84,6 +84,7 @@ public class StartEvent extends SolidityNode {
     @Override
     public void toSolidity(SolidityCodeTemplate template) throws SolidityParserException {
         System.out.println("// ------StartEvent: " + name);
+        validate(this.idToNode);
         Function<String, String> body = (String padding) -> "";
         List<String> stmts = new ArrayList<>();
         if (eventType == null && task != null) {

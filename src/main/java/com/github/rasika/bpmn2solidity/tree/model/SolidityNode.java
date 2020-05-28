@@ -129,6 +129,29 @@ public abstract class SolidityNode extends Node implements SolidityCodeBlock {
         }
     }
 
+    public void validate(Map<String, Node> idToNode) throws SolidityParserException {
+        boolean outgoingFound = idToNode.entrySet().stream().anyMatch(s -> {
+            if (s.getValue() instanceof SequenceFlow) {
+                SequenceFlow flow = (SequenceFlow) s.getValue();
+                return (id.equals(flow.sourceRef));
+            }
+            return false;
+        });
+        boolean incomingFound = idToNode.entrySet().stream().anyMatch(s -> {
+            if (s.getValue() instanceof SequenceFlow) {
+                SequenceFlow flow = (SequenceFlow) s.getValue();
+                return (id.equals(flow.targetRef));
+            }
+            return false;
+        });
+        if (!outgoingFound && !(this instanceof EndEvent)) {
+            throw new SolidityParserException(this.type + ": " + id + " has no outgoing connections");
+        }
+        if (!incomingFound && !(this instanceof StartEvent)) {
+            throw new SolidityParserException(this.type + ": " + id + " has no incoming connections");
+        }
+    }
+
     @Override
     public boolean equals(Object o) {
         if (o == this) return true;

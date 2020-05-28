@@ -12,7 +12,7 @@ public class Main {
 //            contracts/Marriage.bpmn
 //            contracts/RentalAgreement.bpmn
 //            contracts/Sellable.bpmn
-            Parser.parse(Paths.get(Main.class.getClassLoader().getResource("error.bpmn").toURI()));
+            Parser.parse(Paths.get(Main.class.getClassLoader().getResource("contracts/BasicToken.bpmn").toURI()));
         } catch (URISyntaxException e) {
             e.printStackTrace();
         }

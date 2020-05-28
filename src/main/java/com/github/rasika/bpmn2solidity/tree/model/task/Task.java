@@ -143,17 +143,4 @@ public class Task extends SolidityNode {
         }
         return modifiers;
     }
-
-    protected void validate(Map<String, Node> idToNode) throws SolidityParserException {
-        boolean matched = idToNode.entrySet().stream().anyMatch(s -> {
-            if (s.getValue() instanceof SequenceFlow) {
-                SequenceFlow flow = (SequenceFlow) s.getValue();
-                return (id.equals(flow.sourceRef));
-            }
-            return false;
-        });
-        if (!matched) {
-            throw new SolidityParserException("Task: " + id + " has no outgoing connections");
-        }
-    }
 }

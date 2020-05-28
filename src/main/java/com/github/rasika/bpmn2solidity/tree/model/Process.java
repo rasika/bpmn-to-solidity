@@ -32,6 +32,8 @@ public class Process extends SolidityNode {
                 dataStoreReferences.add(TreeBuilder.createDataStoreReference(child));
             } else if ("dataObject".equals(child.type)) {
                 dataObjects.add(TreeBuilder.createDataObject(child));
+            } else if ("startEvent".equals(child.type)) {
+                startEvents.add(TreeBuilder.createStartEvent(child));
             }
         });
 
@@ -48,11 +50,6 @@ public class Process extends SolidityNode {
             if (sourceNode instanceof SolidityNode && targetNode instanceof SolidityNode) {
                 // re-sync parent
                 targetNode.parent = sourceNode;
-            }
-            if (sourceNode instanceof StartEvent) {
-                // capture constructors
-                StartEvent event = (StartEvent) sourceNode;
-                startEvents.add(event);
             }
         }
         for (StartEvent event : startEvents) {

@@ -38,9 +38,6 @@ public class EndEvent extends SolidityNode {
                 eventType = EventType.TimerEventDefinition;
             }
         });
-        getChildren().forEach(child -> {
-
-        });
     }
 
     @Override
