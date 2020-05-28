@@ -9,6 +9,7 @@
   <bpmn2:itemDefinition id="ItemDefinition_4021" isCollection="false" itemKind="Physical" structureRef="solidity:uint"/>
   <bpmn2:itemDefinition id="ItemDefinition_1301" isCollection="false" itemKind="Physical" structureRef="solidity:token"/>
   <bpmn2:itemDefinition id="ItemDefinition_220" isCollection="false" structureRef="xs:string"/>
+  <bpmn2:itemDefinition id="ItemDefinition_369" isCollection="false" itemKind="Physical" structureRef="mapping(address =&gt; uint256)"/>
   <bpmn2:message id="Message_5" name="GoalReached">
     <bpmn2:extensionElements>
       <ext:style/>
@@ -22,12 +23,14 @@
   <bpmn2:dataStore id="DataStore_2" itemSubjectRef="ItemDefinition_433" name="beneficiary"/>
   <bpmn2:dataStore id="DataStore_3" itemSubjectRef="ItemDefinition_3822" name="fundingGoalReached"/>
   <bpmn2:dataStore id="DataStore_13" itemSubjectRef="ItemDefinition_3822" name="crowdsaleClosed"/>
-  <bpmn2:dataStore id="DataStore_4" name="Data Store 1"/>
+  <bpmn2:dataStore id="DataStore_4" itemSubjectRef="ItemDefinition_369" name="balanceOf"/>
   <bpmn2:dataStore id="DataStore_5" itemSubjectRef="ItemDefinition_4021" name="Data Store 1"/>
   <bpmn2:dataStore id="DataStore_7" itemSubjectRef="ItemDefinition_1301" name="Data Store 6"/>
   <bpmn2:dataStore id="DataStore_9" itemSubjectRef="ItemDefinition_4021" name="Data Store 8"/>
-  <bpmn2:dataStore id="DataStore_11" itemSubjectRef="ItemDefinition_4021" name="Data Store 10"/>
+  <bpmn2:dataStore id="DataStore_11" itemSubjectRef="ItemDefinition_4021" name="amountRaised"/>
   <bpmn2:dataStore id="DataStore_6" itemSubjectRef="ItemDefinition_220" name="input14"/>
+  <bpmn2:dataStore id="DataStore_8" name="Data Store 1"/>
+  <bpmn2:dataStore id="DataStore_12" name="Data Store 10"/>
   <bpmn2:collaboration id="Collaboration_1" name="Collaboration 1">
     <bpmn2:participant id="Participant_1" name="Contract Crowdsale" processRef="Process_1"/>
     <bpmn2:participant id="Participant_2" name="Default Pool" processRef="Process_2">
@@ -124,7 +127,7 @@
           <bpmn2:dataOutputRefs>DataOutput_2</bpmn2:dataOutputRefs>
         </bpmn2:outputSet>
       </bpmn2:ioSpecification>
-      <bpmn2:script>fundingGoalReached = true</bpmn2:script>
+      <bpmn2:script>fundingGoalReached = true;</bpmn2:script>
     </bpmn2:scriptTask>
     <bpmn2:sequenceFlow id="SequenceFlow_19" name="amountRaised >= fundingGoal" sourceRef="ExclusiveGateway_3" targetRef="ScriptTask_3">
       <bpmn2:conditionExpression xsi:type="bpmn2:tFormalExpression" id="FormalExpression_13">amountRaised >= fundingGoal</bpmn2:conditionExpression>
@@ -139,7 +142,7 @@
         </bpmn2:inputSet>
         <bpmn2:outputSet id="OutputSet_25" name="Output Set 41"/>
       </bpmn2:ioSpecification>
-      <bpmn2:property id="Property_1" itemSubjectRef="ItemDefinition_4021" name="beneficiary"/>
+      <bpmn2:property id="Property_1" itemSubjectRef="ItemDefinition_433" name="beneficiary"/>
       <bpmn2:property id="Property_2" itemSubjectRef="ItemDefinition_4021" name="amountRaised"/>
     </bpmn2:sendTask>
     <bpmn2:sequenceFlow id="SequenceFlow_21" sourceRef="ScriptTask_3" targetRef="SendTask_1"/>
@@ -207,7 +210,7 @@
       </bpmn2:ioSpecification>
       <bpmn2:property id="Property_3" itemSubjectRef="ItemDefinition_433" name="msg.sender"/>
       <bpmn2:property id="Property_4" itemSubjectRef="ItemDefinition_4021" name="amount"/>
-      <bpmn2:property id="Property_5" itemSubjectRef="ItemDefinition_3822" name="false"/>
+      <bpmn2:property id="Property_5" itemSubjectRef="ItemDefinition_3822" name="isContribution=false"/>
     </bpmn2:sendTask>
     <bpmn2:sequenceFlow id="SequenceFlow_31" name="msg.sender.send(amount)" sourceRef="ExclusiveGateway_6" targetRef="SendTask_2">
       <bpmn2:conditionExpression xsi:type="bpmn2:tFormalExpression" id="FormalExpression_5">msg.sender.send(amount)</bpmn2:conditionExpression>
@@ -245,7 +248,7 @@
       </bpmn2:ioSpecification>
       <bpmn2:property id="Property_6" itemSubjectRef="ItemDefinition_433" name="beneficiary"/>
       <bpmn2:property id="Property_7" itemSubjectRef="ItemDefinition_4021" name="amountRaised"/>
-      <bpmn2:property id="Property_8" itemSubjectRef="ItemDefinition_3822" name="false"/>
+      <bpmn2:property id="Property_8" itemSubjectRef="ItemDefinition_3822" name="isContribution=false"/>
     </bpmn2:sendTask>
     <bpmn2:sequenceFlow id="SequenceFlow_39" name="beneficiary.send(amountRaised)" sourceRef="ExclusiveGateway_8" targetRef="SendTask_3">
       <bpmn2:conditionExpression xsi:type="bpmn2:tFormalExpression" id="FormalExpression_9">beneficiary.send(amountRaised)</bpmn2:conditionExpression>
@@ -332,6 +335,12 @@
     </bpmn2:intermediateCatchEvent>
     <bpmn2:sequenceFlow id="SequenceFlow_4" sourceRef="IntermediateCatchEvent_1" targetRef="Task_4"/>
     <bpmn2:sequenceFlow id="SequenceFlow_5" sourceRef="EventBasedGateway_2" targetRef="IntermediateCatchEvent_1"/>
+    <bpmn2:dataStoreReference id="DataStoreReference_1" name="balanceOf" dataStoreRef="DataStore_4">
+      <bpmn2:dataState id="DataState_1"/>
+    </bpmn2:dataStoreReference>
+    <bpmn2:dataStoreReference id="DataStoreReference_2" name="amountRaised" dataStoreRef="DataStore_11">
+      <bpmn2:dataState id="DataState_2"/>
+    </bpmn2:dataStoreReference>
     <bpmn2:association id="Association_3" sourceRef="DataInput_2" targetRef="StartEvent_1"/>
     <bpmn2:association id="Association_4" sourceRef="DataInput_3" targetRef="StartEvent_1"/>
     <bpmn2:association id="Association_1" sourceRef="DataInput_12" targetRef="StartEvent_1"/>
@@ -656,6 +665,18 @@
         <dc:Bounds height="36.0" width="36.0" x="349.0" y="289.0"/>
         <bpmndi:BPMNLabel id="BPMNLabel_28" labelStyle="BPMNLabelStyle_1">
           <dc:Bounds height="11.0" width="54.0" x="340.0" y="325.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_DataStoreReference_8" bpmnElement="DataStoreReference_1">
+        <dc:Bounds height="50.0" width="50.0" x="288.0" y="490.0"/>
+        <bpmndi:BPMNLabel id="BPMNLabel_9" labelStyle="BPMNLabelStyle_1">
+          <dc:Bounds height="11.0" width="42.0" x="292.0" y="540.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_DataStoreReference_9" bpmnElement="DataStoreReference_2">
+        <dc:Bounds height="50.0" width="50.0" x="288.0" y="430.0"/>
+        <bpmndi:BPMNLabel id="BPMNLabel_25" labelStyle="BPMNLabelStyle_1">
+          <dc:Bounds height="11.0" width="59.0" x="284.0" y="480.0"/>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="BPMNEdge_SequenceFlow_13" bpmnElement="SequenceFlow_13" sourceElement="BPMNShape_EventBasedGateway_2" targetElement="BPMNShape_ScriptTask_2">
