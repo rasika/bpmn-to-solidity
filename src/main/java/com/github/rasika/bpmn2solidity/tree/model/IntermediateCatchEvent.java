@@ -43,7 +43,7 @@ public class IntermediateCatchEvent extends SolidityNode {
         if(condition == null) {
             condition = name;
         }
-        if(!condition.endsWith(";")) {
+        if(!condition.trim().endsWith(";")) {
             condition += ";";
         }
         System.out.println("// ------IntermediateCatchEvent: " + name);
