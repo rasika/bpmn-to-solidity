@@ -1,0 +1,67 @@
+pragma solidity >=0.4.0 <0.7.0;
+
+contract RentalAgreement {
+
+    struct PaidRent {
+        uint id;
+        uint value;
+    }
+
+    PaidRent[] public paidrents;
+    uint public createdTimestamp;
+    uint public rent;
+    string public house;
+    address public landlord;
+    State public state;
+    address public tenant;
+
+    enum State {Created, Started, Terminated}
+
+    event AgreementConfirmed();
+    event ContractTerminated();
+    event PaidRents();
+
+    constructor (uint _rent, string _house){
+        rent = _rent;
+        house = _house;
+        landlord = msg.sender;
+        createdTimestamp = block.timestamp;
+    }
+
+    modifier inState(State _state) {
+        if (state == _state) _;
+    }
+
+    modifier onlyLandlord {
+        if (msg.sender != tenant) _;
+    }
+
+    modifier onlyTenant {
+        if (msg.sender == tenant) _;
+    }
+
+
+    /** Confirm the lease agreement as tenant */
+    function confirmAgreement() public inState(State.Created) {
+        require(msg.sender != landlord);
+        emit AgreementConfirmed();
+    }
+
+    /** Terminate the contract so the tenant can’t pay rent anymore, and the contract is terminated */
+    function terminateContract() public onlyLandlord {
+        emit ContractTerminated();
+        landlord.send(this.balance);
+        state = State.Terminated;
+    }
+
+    function payRent() public inState(State.Started) onlyTenant {
+        require(msg.value == rent);
+        emit PaidRents();
+        landlord.send(msg.value);
+        paidrents.push(PaidRent({
+        id : paidrents.length + 1,
+        value : msg.value
+        }));
+    }
+
+}

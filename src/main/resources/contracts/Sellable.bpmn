@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- origin at X=0.0 Y=0.0 -->
-<bpmn2:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bpmn2="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:ext="http://org.eclipse.bpmn2/ext" xmlns:xs="http://www.w3.org/2001/XMLSchema" id="Definitions_1" exporter="org.eclipse.bpmn2.modeler.core" exporterVersion="1.4.3.Final-v20180418-1358-B1" targetNamespace="http://org.eclipse.bpmn2/default/collaboration">
+<bpmn2:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bpmn2="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:ext="http://org.eclipse.bpmn2/ext" xmlns:xs="http://www.w3.org/2001/XMLSchema" id="Definitions_1" exporter="org.eclipse.bpmn2.modeler.core" exporterVersion="1.5.0.Final-v20180515-1642-B1" targetNamespace="http://org.eclipse.bpmn2/default/collaboration">
   <bpmn2:itemDefinition id="ItemDefinition_28" isCollection="false" structureRef="solidity:address"/>
   <bpmn2:itemDefinition id="ItemDefinition_92" isCollection="false" structureRef="solidity:bool"/>
   <bpmn2:itemDefinition id="ItemDefinition_471" isCollection="false" structureRef="solidity:uint"/>
@@ -61,10 +61,10 @@ wants to provide a mechanism for selling its ownership to another account
         <bpmn2:inputSet id="InputSet_5" name="Input Set 5"/>
         <bpmn2:outputSet id="OutputSet_6" name="Output Set 6"/>
       </bpmn2:ioSpecification>
-      <bpmn2:property id="Property_6" itemSubjectRef="ItemDefinition_471" name="_saleDate"/>
-      <bpmn2:property id="Property_7" itemSubjectRef="ItemDefinition_28" name="_from"/>
-      <bpmn2:property id="Property_8" itemSubjectRef="ItemDefinition_28" name="_to"/>
-      <bpmn2:property id="Property_9" itemSubjectRef="ItemDefinition_471" name="_salePrice"/>
+      <bpmn2:property id="Property_6" itemSubjectRef="ItemDefinition_471" name="_saleDate=now"/>
+      <bpmn2:property id="Property_7" itemSubjectRef="ItemDefinition_28" name="_from=address(0)"/>
+      <bpmn2:property id="Property_8" itemSubjectRef="ItemDefinition_28" name="_to=owner"/>
+      <bpmn2:property id="Property_9" itemSubjectRef="ItemDefinition_471" name="_salePrice=0"/>
     </bpmn2:sendTask>
     <bpmn2:eventBasedGateway id="EventBasedGateway_1" gatewayDirection="Diverging">
       <bpmn2:incoming>SequenceFlow_27</bpmn2:incoming>

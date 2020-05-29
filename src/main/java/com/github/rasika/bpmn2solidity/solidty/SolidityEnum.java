@@ -58,7 +58,7 @@ public class SolidityEnum {
         if (value != null && !value.isEmpty()) {
             rv.append(" {").append(value).append("}");
         }
-        rv.append(";").append(System.lineSeparator());
+        rv.append(System.lineSeparator());
         return rv.toString();
     }
 }

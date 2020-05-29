@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- origin at X=0.0 Y=0.0 -->
-<bpmn2:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bpmn2="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:ext="http://org.eclipse.bpmn2/ext" xmlns:xs="http://www.w3.org/2001/XMLSchema" id="Definitions_1" exporter="org.eclipse.bpmn2.modeler.core" exporterVersion="1.4.3.Final-v20180418-1358-B1" targetNamespace="http://org.eclipse.bpmn2/default/collaboration">
+<bpmn2:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bpmn2="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:ext="http://org.eclipse.bpmn2/ext" xmlns:xs="http://www.w3.org/2001/XMLSchema" id="Definitions_1" exporter="org.eclipse.bpmn2.modeler.core" exporterVersion="1.5.0.Final-v20180515-1642-B1" targetNamespace="http://org.eclipse.bpmn2/default/collaboration">
   <bpmn2:itemDefinition id="ItemDefinition_199" isCollection="false" structureRef="solidity:uint"/>
-  <bpmn2:itemDefinition id="ItemDefinition_281" isCollection="false" structureRef="solidity:PaidRent"/>
+  <bpmn2:itemDefinition id="ItemDefinition_281" isCollection="true" structureRef="solidity:PaidRent"/>
   <bpmn2:itemDefinition id="ItemDefinition_444" isCollection="false" structureRef="solidity:string"/>
   <bpmn2:itemDefinition id="ItemDefinition_643" isCollection="false" structureRef="solidity:address"/>
   <bpmn2:itemDefinition id="ItemDefinition_734" isCollection="false" structureRef="solidity:enum"/>
@@ -12,7 +12,7 @@
       <ext:style/>
     </bpmn2:extensionElements>
   </bpmn2:message>
-  <bpmn2:message id="Message_2" name="PaidRent">
+  <bpmn2:message id="Message_2" name="PaidRents">
     <bpmn2:extensionElements>
       <ext:style/>
     </bpmn2:extensionElements>
@@ -26,7 +26,7 @@
   <bpmn2:dataStore id="DataStore_4" itemSubjectRef="ItemDefinition_199" name="createdTimestamp"/>
   <bpmn2:dataStore id="DataStore_6" itemSubjectRef="ItemDefinition_199" name="Data Store 5"/>
   <bpmn2:dataStore id="DataStore_8" itemSubjectRef="ItemDefinition_444" name="house"/>
-  <bpmn2:dataStore id="DataStore_10" itemSubjectRef="ItemDefinition_643" name="landloard"/>
+  <bpmn2:dataStore id="DataStore_10" itemSubjectRef="ItemDefinition_643" name="landlord"/>
   <bpmn2:dataStore id="DataStore_12" itemSubjectRef="ItemDefinition_734" name="Data Store 11">
     <bpmn2:dataState id="DataState_11" name="Created, Started, Terminated"/>
   </bpmn2:dataStore>
@@ -66,7 +66,7 @@
     <bpmn2:dataStoreReference id="DataStoreReference_4" name="house" dataStoreRef="DataStore_8">
       <bpmn2:dataState id="DataState_5"/>
     </bpmn2:dataStoreReference>
-    <bpmn2:dataStoreReference id="DataStoreReference_5" name="landloard" dataStoreRef="DataStore_10">
+    <bpmn2:dataStoreReference id="DataStoreReference_5" name="landlord" dataStoreRef="DataStore_10">
       <bpmn2:dataState id="DataState_6"/>
     </bpmn2:dataStoreReference>
     <bpmn2:dataStoreReference id="DataStoreReference_6" name="State" dataStoreRef="DataStore_12">
@@ -147,6 +147,7 @@
     <bpmn2:intermediateCatchEvent id="IntermediateCatchEvent_2" name="inState(State.Started)">
       <bpmn2:incoming>SequenceFlow_14</bpmn2:incoming>
       <bpmn2:outgoing>SequenceFlow_8</bpmn2:outgoing>
+      <bpmn2:property id="Property_2" itemSubjectRef="ItemDefinition_145" name="_state"/>
       <bpmn2:conditionalEventDefinition id="ConditionalEventDefinition_4">
         <bpmn2:condition xsi:type="bpmn2:tFormalExpression" id="FormalExpression_10">if (state == _state) _;</bpmn2:condition>
       </bpmn2:conditionalEventDefinition>
@@ -155,6 +156,7 @@
     <bpmn2:intermediateCatchEvent id="IntermediateCatchEvent_3" name="inState(State.Created)">
       <bpmn2:incoming>SequenceFlow_5</bpmn2:incoming>
       <bpmn2:outgoing>SequenceFlow_11</bpmn2:outgoing>
+      <bpmn2:property id="Property_1" itemSubjectRef="ItemDefinition_145" name="_state"/>
       <bpmn2:conditionalEventDefinition id="ConditionalEventDefinition_5">
         <bpmn2:condition xsi:type="bpmn2:tFormalExpression" id="FormalExpression_11">if (state == _state) _;</bpmn2:condition>
       </bpmn2:conditionalEventDefinition>
@@ -311,7 +313,7 @@ paidrents.push(PaidRent({
       <bpmndi:BPMNShape id="BPMNShape_DataStoreReference_5" bpmnElement="DataStoreReference_5">
         <dc:Bounds height="50.0" width="50.0" x="530.0" y="201.0"/>
         <bpmndi:BPMNLabel id="BPMNLabel_11" labelStyle="BPMNLabelStyle_1">
-          <dc:Bounds height="11.0" width="38.0" x="536.0" y="251.0"/>
+          <dc:Bounds height="11.0" width="33.0" x="538.0" y="251.0"/>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="BPMNShape_DataStoreReference_6" bpmnElement="DataStoreReference_6">

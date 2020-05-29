@@ -35,6 +35,9 @@ public class Task extends SolidityNode {
     protected boolean isPublicByMsgFlows = false;
     protected Map<String, Node> idToNode = new HashMap<>();
     public static List<String> modifiersStack = new Stack<>();
+    public static Map<String, List<Function<String, String>>> inContModifiers = new HashMap<>();
+    public String incoming;
+    public String outgoing;
 
     public Task(Node currentNode) {
         super(currentNode);
@@ -45,6 +48,10 @@ public class Task extends SolidityNode {
                 dataInputAssociations.add(TreeBuilder.createDataInputAssociation(child));
             } else if ("dataOutputAssociation".equals(child.type)) {
                 dataOutputAssociations.add(TreeBuilder.createDataOutputAssociation(child));
+            } else if ("incoming".equals(child.type)) {
+                incoming = child.text;
+            } else if ("outgoing".equals(child.type)) {
+                outgoing = child.text;
             }
         });
         this.functionName = SolidityFunction.getFunctionName(name);
@@ -105,6 +112,11 @@ public class Task extends SolidityNode {
         }
         Function<String, String> body = (padding) -> {
             StringBuilder str = new StringBuilder();
+            if (inContModifiers.containsKey(incoming)) {
+                for (Function<String, String> funcAcceptor : inContModifiers.get(incoming)) {
+                    str.append(padding).append(funcAcceptor.apply(""));
+                }
+            }
             for (String stmt : stmts) {
                 str.append(padding).append(stmt).append(System.lineSeparator());
             }

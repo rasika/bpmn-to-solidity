@@ -45,6 +45,7 @@ public class DataStore extends SolidityNode {
             SolidityContract contract = template.getContract(parentProcess.contractName);
             if ("enum".equals(type)) {
                 String varName = SolidityEnum.getEnumName(name);
+                modifiers.remove("public");
                 contract.addEnum(type, varName, Parser.unescapeXml(dataState), modifiers, documentation);
             } else {
                 String varName = SolidityGlobalVariable.getVariableName(name);
