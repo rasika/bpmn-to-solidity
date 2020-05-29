@@ -7,7 +7,7 @@ import java.util.Map;
 
 public class Assignment extends SolidityNode {
 	private String fromRef;
-	private String expression;
+	public String expression;
 	private String returnTypeRef;
 	public VariableTypeDefinition returnType;
 

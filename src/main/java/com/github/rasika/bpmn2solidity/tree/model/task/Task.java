@@ -96,6 +96,7 @@ public class Task extends SolidityNode {
         }
         List<String> stmts = new ArrayList<>();
         String returnType = "";
+        boolean explicitReturnFound = false;
         // check output for return type and function body
         for (DataOutputAssociation dataOutputAssociation : dataOutputAssociations) {
             if (dataOutputAssociation.assignment != null) {
@@ -103,12 +104,18 @@ public class Task extends SolidityNode {
                 if (typeDef != null) {
                     returnType = typeDef.toSolidity();
                 }
+                if (dataOutputAssociation.assignment.expression.startsWith("return ")) {
+                    explicitReturnFound = true;
+                }
                 stmts.add(dataOutputAssociation.assignment.toSolidity());
             } else if (dataOutputAssociation.source != null && dataOutputAssociation.target != null) {
                 String name = dataOutputAssociation.target.name;
                 String[] parts = name.split(":");
                 stmts.add(parts[0] + " = " + BPMN2SolidityParser.unescapeXml(dataOutputAssociation.source.name) + ";");
             }
+        }
+        if (explicitReturnFound && returnType.isEmpty()) {
+            throw new SolidityParserException("Return type not specified for Task:" + name);
         }
         Function<String, String> body = (padding) -> {
             StringBuilder str = new StringBuilder();
