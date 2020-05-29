@@ -17,7 +17,7 @@ public class Main {
             String contractPath = "contracts/Sellable.bpmn";
 
             // Get path of BPMN XML
-            Path bpmnXML = Paths.get(Main.class.getClassLoader().getResource(contractPath).toURI());
+            Path bpmnXML = Paths.get("src/main/resources/").resolve(contractPath);
 
             // Translate to Solidity
             String solidityCode = BPMN2SolidityParser.parse(bpmnXML, false);
