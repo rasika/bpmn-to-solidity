@@ -1,6 +1,6 @@
 package com.github.rasika.bpmn2solidity.tree.model;
 
-import com.github.rasika.bpmn2solidity.Parser;
+import com.github.rasika.bpmn2solidity.BPMN2SolidityParser;
 import com.github.rasika.bpmn2solidity.exceptions.SolidityParserException;
 import com.github.rasika.bpmn2solidity.solidty.SolidityCodeTemplate;
 import com.github.rasika.bpmn2solidity.solidty.SolidityContract;
@@ -97,11 +97,11 @@ public class StartEvent extends SolidityNode {
                 String name = dataOutputAssociation.source.name;
                 String[] parts = name.split(":");
                 String assignment = dataOutputAssociation.assignment.toSolidity();
-                stmts.add(Parser.unescapeXml(assignment) + " = " + parts[0] + ";");
+                stmts.add(BPMN2SolidityParser.unescapeXml(assignment) + " = " + parts[0] + ";");
             } else if (dataOutputAssociation.source != null && dataOutputAssociation.target != null) {
                 String name = dataOutputAssociation.target.name;
                 String[] parts = name.split(":");
-                stmts.add(parts[0] + " = " + Parser.unescapeXml(dataOutputAssociation.source.name) + ";");
+                stmts.add(parts[0] + " = " + BPMN2SolidityParser.unescapeXml(dataOutputAssociation.source.name) + ";");
             }
         }
         body = (padding) -> {

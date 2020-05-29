@@ -1,6 +1,6 @@
 package com.github.rasika.bpmn2solidity.tree.model;
 
-import com.github.rasika.bpmn2solidity.Parser;
+import com.github.rasika.bpmn2solidity.BPMN2SolidityParser;
 import com.github.rasika.bpmn2solidity.exceptions.SolidityParserException;
 import com.github.rasika.bpmn2solidity.solidty.SolidityCodeTemplate;
 import com.github.rasika.bpmn2solidity.solidty.SolidityContract;
@@ -109,7 +109,7 @@ public class IntermediateCatchEvent extends SolidityNode {
                     if (scanner.hasNextLine()) {
                         postfix = System.lineSeparator();
                     }
-                    stmts.add(Parser.unescapeXml(line.trim() + postfix));
+                    stmts.add(BPMN2SolidityParser.unescapeXml(line.trim() + postfix));
                 }
 
                 Function<String, String> body = (padding) -> {

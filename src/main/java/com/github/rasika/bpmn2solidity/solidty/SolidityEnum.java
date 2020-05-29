@@ -1,6 +1,6 @@
 package com.github.rasika.bpmn2solidity.solidty;
 
-import com.github.rasika.bpmn2solidity.Parser;
+import com.github.rasika.bpmn2solidity.BPMN2SolidityParser;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,7 +32,7 @@ public class SolidityEnum {
             rv = Character.toUpperCase(name.charAt(0)) + name.substring(1);
         }
         rv = rv.replaceAll(" ", "");
-        rv = Parser.unescapeXml(rv);
+        rv = BPMN2SolidityParser.unescapeXml(rv);
         return rv;
     }
 

@@ -1,6 +1,6 @@
 package com.github.rasika.bpmn2solidity.tree.model.gateway;
 
-import com.github.rasika.bpmn2solidity.Parser;
+import com.github.rasika.bpmn2solidity.BPMN2SolidityParser;
 import com.github.rasika.bpmn2solidity.exceptions.SolidityParserException;
 import com.github.rasika.bpmn2solidity.solidty.AbstractFunction;
 import com.github.rasika.bpmn2solidity.solidty.SolidityCodeTemplate;
@@ -104,9 +104,9 @@ public class ExclusiveGateway extends SolidityNode {
             }).findAny();
             if (optCondition.isPresent()) {
                 if (ifElseInstr == null) {
-                    ifElseInstr = new SolidityIfElseInstruction(Parser.unescapeXml(optCondition.get()));
+                    ifElseInstr = new SolidityIfElseInstruction(BPMN2SolidityParser.unescapeXml(optCondition.get()));
                 } else {
-                    ifElseInstr.addElseIfStmt(new SolidityIfElseInstruction(Parser.unescapeXml(optCondition.get())));
+                    ifElseInstr.addElseIfStmt(new SolidityIfElseInstruction(BPMN2SolidityParser.unescapeXml(optCondition.get())));
                 }
                 SolidityInstruction parentInstruction = function.getCurrentParentInstruction();
                 if (parentInstruction != null) {

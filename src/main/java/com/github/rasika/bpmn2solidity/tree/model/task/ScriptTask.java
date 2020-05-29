@@ -1,6 +1,6 @@
 package com.github.rasika.bpmn2solidity.tree.model.task;
 
-import com.github.rasika.bpmn2solidity.Parser;
+import com.github.rasika.bpmn2solidity.BPMN2SolidityParser;
 import com.github.rasika.bpmn2solidity.exceptions.SolidityParserException;
 import com.github.rasika.bpmn2solidity.solidty.SolidityCodeTemplate;
 import com.github.rasika.bpmn2solidity.solidty.SolidityContract;
@@ -21,7 +21,7 @@ public class ScriptTask extends Task {
         super(currentNode);
         getChildren().forEach(child -> {
                     if ("script".equals(child.type)) {
-                        script = Parser.unescapeXml(child.text);
+                        script = BPMN2SolidityParser.unescapeXml(child.text);
                     }
                 }
         );

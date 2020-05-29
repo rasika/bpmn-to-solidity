@@ -1,6 +1,6 @@
 package com.github.rasika.bpmn2solidity.tree.model;
 
-import com.github.rasika.bpmn2solidity.Parser;
+import com.github.rasika.bpmn2solidity.BPMN2SolidityParser;
 import com.github.rasika.bpmn2solidity.tree.model.toplevel.VariableTypeDefinition;
 
 import java.util.Map;
@@ -23,7 +23,7 @@ public class Assignment extends SolidityNode {
 			} else if ("to".equals(child.type)) {
 				child.getAttributes().forEach(pair -> {
 					if (pair.a.endsWith(":type") && pair.b.endsWith(":tFormalExpression")) {
-						expression = Parser.unescapeXml(child.text);
+						expression = BPMN2SolidityParser.unescapeXml(child.text);
 					} else if ("evaluatesToTypeRef".equals(pair.a)) {
 						returnTypeRef = pair.b;
 					}

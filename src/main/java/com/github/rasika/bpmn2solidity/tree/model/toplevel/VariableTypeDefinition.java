@@ -1,6 +1,6 @@
 package com.github.rasika.bpmn2solidity.tree.model.toplevel;
 
-import com.github.rasika.bpmn2solidity.Parser;
+import com.github.rasika.bpmn2solidity.BPMN2SolidityParser;
 import com.github.rasika.bpmn2solidity.tree.model.Node;
 import com.github.rasika.bpmn2solidity.tree.model.SolidityNode;
 
@@ -43,7 +43,7 @@ public class VariableTypeDefinition extends SolidityNode {
         } else if (structureRef.contains(":double")) {
             result = "double";
         } else {
-            result = Parser.unescapeXml(structureRef);
+            result = BPMN2SolidityParser.unescapeXml(structureRef);
         }
 
         if (isCollection) {

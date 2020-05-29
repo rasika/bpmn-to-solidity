@@ -5,3 +5,5 @@
 build
 
 .idea
+/src/test/solidity/node_modules/
+/src/test/systems/node_modules/

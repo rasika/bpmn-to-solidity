@@ -1,6 +1,6 @@
 package com.github.rasika.bpmn2solidity.tree.model.toplevel;
 
-import com.github.rasika.bpmn2solidity.Parser;
+import com.github.rasika.bpmn2solidity.BPMN2SolidityParser;
 import com.github.rasika.bpmn2solidity.exceptions.SolidityParserException;
 import com.github.rasika.bpmn2solidity.solidty.SolidityCodeTemplate;
 import com.github.rasika.bpmn2solidity.solidty.SolidityContract;
@@ -46,10 +46,10 @@ public class DataStore extends SolidityNode {
             if ("enum".equals(type)) {
                 String varName = SolidityEnum.getEnumName(name);
                 modifiers.remove("public");
-                contract.addEnum(type, varName, Parser.unescapeXml(dataState), modifiers, documentation);
+                contract.addEnum(type, varName, BPMN2SolidityParser.unescapeXml(dataState), modifiers, documentation);
             } else {
                 String varName = SolidityGlobalVariable.getVariableName(name);
-                contract.addStateVariable(type, varName, Parser.unescapeXml(dataState), modifiers, documentation);
+                contract.addStateVariable(type, varName, BPMN2SolidityParser.unescapeXml(dataState), modifiers, documentation);
             }
         }
     }

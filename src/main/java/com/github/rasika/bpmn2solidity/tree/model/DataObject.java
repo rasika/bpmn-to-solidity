@@ -1,6 +1,6 @@
 package com.github.rasika.bpmn2solidity.tree.model;
 
-import com.github.rasika.bpmn2solidity.Parser;
+import com.github.rasika.bpmn2solidity.BPMN2SolidityParser;
 import com.github.rasika.bpmn2solidity.exceptions.SolidityParserException;
 import com.github.rasika.bpmn2solidity.solidty.SolidityCodeTemplate;
 import com.github.rasika.bpmn2solidity.solidty.SolidityContract;
@@ -80,7 +80,8 @@ public class DataObject extends SolidityNode {
             List<String> modifiers = SolidityGlobalVariable.getModifiers(name);
             modifiers.removeIf(s->s.equals("public"));
             String varName = SolidityGlobalVariable.getVariableName(name);
-            contract.addStateVariable(variableTypeDefinition.toSolidity(), varName, Parser.unescapeXml(dataState), modifiers, documentation);
+            contract.addStateVariable(variableTypeDefinition.toSolidity(), varName, BPMN2SolidityParser
+                    .unescapeXml(dataState), modifiers, documentation);
         } else if (dataStore != null) {
             try {
                 dataStore.name = name;

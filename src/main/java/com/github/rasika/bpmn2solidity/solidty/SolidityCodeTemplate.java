@@ -25,7 +25,6 @@ public class SolidityCodeTemplate {
 
     public String render() {
         StringBuilder rv = new StringBuilder();
-        rv.append("--------------------------------------------------------------\n");
         rv.append("pragma solidity >=0.4.0 <0.7.0;\n\n");
         if (!imports.isEmpty()) {
             for (String importLink : imports) {
